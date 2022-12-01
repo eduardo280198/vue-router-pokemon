@@ -28,9 +28,9 @@
 
     <h1>Pokemons</h1>
 
-    <ul>
+    <ol>
         <li v-for="poke in pokemons" :key="poke.name">
           <RouterLink :to="`/pokemons/${poke.name}`">{{poke.name}}</RouterLink>
         </li>
-    </ul>
+    </ol>
 </template>
