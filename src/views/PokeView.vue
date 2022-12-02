@@ -19,6 +19,7 @@
       console.log(data);
     }catch (e) {
       console.log(e);
+      pokeImage.value = null;
     }
   }
   getData();
@@ -26,10 +27,14 @@
 </script>
 
 <template>
-  <h1>Poke name: {{$route.params.pokeName}}</h1>
-  <img :src="pokeImage.sprites?.front_default" alt="Sprite de enfrente">
-  <img :src="pokeImage.sprites?.back_default" alt="Sprite de atras">
-  <button @click="back">Volver</button>
+
+  <div v-if="pokeImage">
+    <h1>Poke name: {{$route.params.pokeName}}</h1>
+    <img :src="pokeImage.sprites?.front_default" alt="Sprite de enfrente">
+    <img :src="pokeImage.sprites?.back_default" alt="Sprite de atras">
+  </div>
+  <h1 v-else>No existe el Pokemon</h1>
+  <button @click="back" class="btn btn-outline-primary">Volver</button>
 </template>
 
 <style scoped>
