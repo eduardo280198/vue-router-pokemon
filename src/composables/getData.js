@@ -4,7 +4,7 @@ import {ref} from 'vue';
 export const useGetData = () => {
 
     const data = ref(null);
-
+    const errorData = ref(null);
     const loading = ref(true);
 
     const getData = async (url) => {
@@ -12,8 +12,9 @@ export const useGetData = () => {
         try {
             const res = await axios.get(url);
             data.value = res.data;
-        } catch (error) {
-            console.log(error);
+        } catch (e) {
+            console.log(e);
+            errorData.value = 'Error de Servidor'
         }finally{
             loading.value = false;
         }
@@ -22,6 +23,7 @@ export const useGetData = () => {
     return{
         getData,
         data,
-        loading
+        loading,
+        errorData
     }
 }
