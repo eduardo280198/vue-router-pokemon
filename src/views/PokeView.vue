@@ -1,5 +1,6 @@
 <script setup>
   import {useRoute, useRouter} from 'vue-router';
+  import {useFavoritosStore} from '@/store/favoritos.js'
 
   import {useGetData} from '@/composables/getData';
 
@@ -7,6 +8,9 @@
 
   const route = useRoute();
   const router = useRouter();
+  const useFavoritos = useFavoritosStore();
+
+  const {add} = useFavoritos;
 
   const back = () => {
     router.push('/pokemons');
@@ -25,6 +29,7 @@
     <h1>Poke name: {{$route.params.pokeName}}</h1>
     <img :src="data.sprites?.front_default" alt="Sprite de enfrente">
     <img :src="data.sprites?.back_default" alt="Sprite de atras">
+    <button class="btn btn-primary mb-2" @click="add(data)">Agregar Favoritos</button>
   </div>
 
   <button @click="back" class="btn btn-outline-primary">Volver</button>
