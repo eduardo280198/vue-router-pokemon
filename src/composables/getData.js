@@ -17,6 +17,7 @@ export const useGetData = () => {
             errorData.value = 'Error de Servidor'
         }finally{
             loading.value = false;
+            console.log(data.value);
         }
     }
 
