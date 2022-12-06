@@ -10,7 +10,7 @@
   const router = useRouter();
   const useFavoritos = useFavoritosStore();
 
-  const {add} = useFavoritos;
+  const {add, findPoke} = useFavoritos;
 
   const back = () => {
     router.push('/pokemons');
@@ -25,14 +25,14 @@
   <p v-if="loading">Cargando Información...</p>
   <div class="alert alert-danger mt-2" v-if="errorData">{{errorData}}</div>
 
-  <div v-if="data">
+  <div  v-if="data">
     <h1>Poke name: {{$route.params.pokeName}}</h1>
     <img :src="data.sprites?.front_default" alt="Sprite de enfrente">
     <img :src="data.sprites?.back_default" alt="Sprite de atras">
-    <button class="btn btn-primary mb-2" @click="add(data)">Agregar Favoritos</button>
   </div>
+  <button :disabled="findPoke(data.name)" class="btn btn-primary me-2" @click="add(data)">Agregar Favoritos</button>
 
-  <button @click="back" class="btn btn-outline-primary">Volver</button>
+  <button @click="back" class="btn btn-outline-danger">Volver</button>
 </template>
 
 <style scoped>
